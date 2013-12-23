@@ -26,9 +26,14 @@
 include_recipe 'pacman'
 
 package 'net-tools' # needed for virtualbox networking
-package 'nfs-utils'
 package 'virtualbox'
 template '/etc/modules-load.d/virtualbox.conf'
+
+package 'nfs-utils'
+service 'nfsd' do
+    action [ :enable, :start ]
+    provider Chef::Provider::Service::Systemd
+end
 
 aur_packages = %w[ rubymine vagrant ]
 aur_packages.each do |pkg_name|
