@@ -49,6 +49,6 @@ package 'virtualbox'
 template '/etc/modules-load.d/virtualbox.conf'
 pacman_aur 'vagrant' do action [ :build, :install ] end
 
-# Synergy
 package 'synergy'
+package 'parcellite'
 
