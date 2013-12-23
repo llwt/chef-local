@@ -26,3 +26,5 @@
 if node.platform == 'arch'
     include_recipe 'devtrw_lan::packages_arch'
 end
+
+template '/etc/hosts'
