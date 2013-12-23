@@ -24,5 +24,5 @@
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #
 if node.platform == 'arch'
-    include_recipe 'packages_arch'
+    include_recipe 'devtrw_lan::packages_arch'
 end

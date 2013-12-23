@@ -25,4 +25,9 @@
 #
 include_recipe 'pacman'
 
-pacman_aur 'rubymine'
+pacman_aur 'rubymine' do
+    action [ :build, :install ]
+end
+
+template '/etc/profile.d/jre.sh' do source 'profile.d/jre.sh' end
+template '/etc/profile.d/jre.csh' do source 'profile.d/jre.sh' end
