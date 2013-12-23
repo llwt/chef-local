@@ -25,8 +25,17 @@
 #
 include_recipe 'pacman'
 
-pacman_aur 'rubymine' do
-    action [ :build, :install ]
+package 'net-tools' # needed for virtualbox networking
+package 'virtualbox'
+template '/etc/modules-load.d/virtualbox.conf' do
+    source 'etc/modules-load.d/virtualbox.conf'
+end
+
+aur_packages = %w[ rubymine vagrant ]
+aur_packages.each do |pkg_name|
+    pacman_aur pkg_name do
+        action [ :build, :install ]
+    end
 end
 
 template '/etc/profile.d/jre.sh' do source 'profile.d/jre.sh' end
