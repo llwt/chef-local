@@ -25,22 +25,30 @@
 #
 include_recipe 'pacman'
 
-package 'net-tools' # needed for virtualbox networking
-package 'virtualbox'
-template '/etc/modules-load.d/virtualbox.conf'
+# Phpstorm/Rubmine
+# TODO: install all fonts? pacman -S $(pacman -Ssq ttf)
+# what does IDEA use, can we install a subset and get it working instead?
+pacman_aur 'jdk' do
+    action [ :build, :install ]
+    pkgbuild_src 'jdk/PKGBUILD'
+end
+template '/etc/profile.d/jdk.sh'
+template '/etc/profile.d/jdk.csh'
+pacman_aur 'rubymine' do action [ :build, :install ] end
+pacman_aur 'phpstorm' do action [ :build, :install ] end
+template '/etc/sysctl.d/60-idea.conf'
 
+# Vagrant/Virtualbox
+package 'net-tools' # needed for virtualbox networking
 package 'nfs-utils'
-service 'nfsd' do
+%w[ rpc-idmapd rpc-mountd ].each do |service_name| service service_name do
     action [ :enable, :start ]
     provider Chef::Provider::Service::Systemd
-end
+end end
+package 'virtualbox'
+template '/etc/modules-load.d/virtualbox.conf'
+pacman_aur 'vagrant' do action [ :build, :install ] end
 
-aur_packages = %w[ rubymine vagrant ]
-aur_packages.each do |pkg_name|
-    pacman_aur pkg_name do
-        action [ :build, :install ]
-    end
-end
+# Synergy
+package 'synergy'
 
-template '/etc/profile.d/jre.sh'
-template '/etc/profile.d/jre.csh' do source 'jre.sh.erb' end
