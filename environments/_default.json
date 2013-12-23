@@ -1,0 +1,5 @@
+{
+  "name": "_default",
+  "description": "The default Chef environment",
+  "run_list": [ "devtrw_lan" ]
+}
