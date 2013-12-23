@@ -29,8 +29,8 @@ include_recipe 'pacman'
 # TODO: install all fonts? pacman -S $(pacman -Ssq ttf)
 # what does IDEA use, can we install a subset and get it working instead?
 pacman_aur 'jdk' do
-    action [ :build, :install ]
-    pkgbuild_src 'jdk/PKGBUILD'
+  action [ :build, :install ]
+  pkgbuild_src 'jdk/PKGBUILD'
 end
 template '/etc/profile.d/jdk.sh'
 template '/etc/profile.d/jdk.csh'
@@ -42,8 +42,8 @@ template '/etc/sysctl.d/60-idea.conf'
 package 'net-tools' # needed for virtualbox networking
 package 'nfs-utils'
 %w[ rpc-idmapd rpc-mountd ].each do |service_name| service service_name do
-    action [ :enable, :start ]
-    provider Chef::Provider::Service::Systemd
+  action [ :enable, :start ]
+  provider Chef::Provider::Service::Systemd
 end end
 package 'virtualbox'
 template '/etc/modules-load.d/virtualbox.conf'
