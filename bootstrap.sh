@@ -93,7 +93,7 @@ rbenv shell   $RUBY_VERSION
 rbenv global  $RUBY_VERSION
 
 echo 'Installing chef gem...'
-gem install chef
+gem install chef berkshelf
 rbenv rehash
 
 KNIFE_COMMON_OPTS="\
