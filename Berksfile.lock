@@ -1,0 +1,7 @@
+{
+  "sources": {
+    "pacman": {
+      "locked_version": "1.1.0"
+    }
+  }
+}
