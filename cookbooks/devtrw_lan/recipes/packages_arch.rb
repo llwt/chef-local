@@ -26,6 +26,7 @@
 include_recipe 'pacman'
 
 package 'net-tools' # needed for virtualbox networking
+package 'nfs-utils'
 package 'virtualbox'
 template '/etc/modules-load.d/virtualbox.conf'
 
