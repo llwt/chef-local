@@ -27,9 +27,7 @@ include_recipe 'pacman'
 
 package 'net-tools' # needed for virtualbox networking
 package 'virtualbox'
-template '/etc/modules-load.d/virtualbox.conf' do
-    source 'etc/modules-load.d/virtualbox.conf'
-end
+template '/etc/modules-load.d/virtualbox.conf'
 
 aur_packages = %w[ rubymine vagrant ]
 aur_packages.each do |pkg_name|
@@ -38,5 +36,5 @@ aur_packages.each do |pkg_name|
     end
 end
 
-template '/etc/profile.d/jre.sh' do source 'profile.d/jre.sh' end
-template '/etc/profile.d/jre.csh' do source 'profile.d/jre.sh' end
+template '/etc/profile.d/jre.sh'
+template '/etc/profile.d/jre.csh' do source 'jre.sh.erb' end
